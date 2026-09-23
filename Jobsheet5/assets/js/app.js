@@ -47,8 +47,11 @@ function initTableFilter() {
     // 6.5 Mengulang Setiap Baris Tabel
     const rows = table.querySelectorAll("tbody tr");
     rows.forEach(function (row) {
-      const teks = row.textContent.toLowerCase();
+      // Latihan 3: cek kolom pertama (Judul)S
+      const kolomJudul = row.querySelector("td");
+      const teks = kolomJudul ? kolomJudul.textContent.toLowerCase() : "";
       row.style.display = teks.includes(keyword) ? "" : "none";
+     
     });
   });
 }
@@ -120,6 +123,20 @@ function initValidasiForm() {
       } else {
         hapusError(stok);
       }
+    }
+
+     // --- Field ISBN (Latihan 1:---
+    const isbn = form.querySelector("[name='isbn']");
+    if (isbn && isbn.value.trim() !== "") {
+      const polaIsbn = /^[0-9-]+$/;
+      if (!polaIsbn.test(isbn.value.trim())) {
+        tampilkanError(isbn, "ISBN hanya boleh berisi angka dan tanda hubung (-).");
+        valid = false;
+      } else {
+        hapusError(isbn);
+      }
+    } else if (isbn) {
+      hapusError(isbn);
     }
 
     // 7.7 Mencegah Submit Jika Tidak Valid
