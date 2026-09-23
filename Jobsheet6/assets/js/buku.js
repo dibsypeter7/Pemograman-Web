@@ -49,4 +49,6 @@ async function muatDaftarBuku() {
 }
 
 // 4.9 Memanggil Fungsi Saat Halaman Siap
-document.addEventListener("DOMContentLoaded", muatDaftarBuku);
+document.addEventListener("DOMContentLoaded", function () {
+ muatDaftarData("../data/buku.json", ["judul", "pengarang", "tahun", "stok", "kategori"]);
+});
